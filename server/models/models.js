@@ -1,5 +1,5 @@
-const sequelize = require('../db')
-const { DataTypes } = require('sequelize')
+const { DataTypes } = require('sequelize');
+const sequelize = require('../db');
 
 const User = sequelize.define('user', {
   id: {
@@ -18,7 +18,7 @@ const User = sequelize.define('user', {
     type: DataTypes.STRING,
     defaultValue: 'USER',
   },
-})
+});
 
 const Basket = sequelize.define('basket', {
   id: {
@@ -26,7 +26,7 @@ const Basket = sequelize.define('basket', {
     primaryKey: true,
     autoIncrement: true,
   },
-})
+});
 
 const BasketDevice = sequelize.define('basket_device', {
   id: {
@@ -34,7 +34,7 @@ const BasketDevice = sequelize.define('basket_device', {
     primaryKey: true,
     autoIncrement: true,
   },
-})
+});
 
 const Device = sequelize.define('device', {
   id: {
@@ -59,7 +59,7 @@ const Device = sequelize.define('device', {
     type: DataTypes.STRING,
     allowNull: false,
   },
-})
+});
 
 const Type = sequelize.define('type', {
   id: {
@@ -72,7 +72,7 @@ const Type = sequelize.define('type', {
     unique: true,
     allowNull: false,
   },
-})
+});
 
 const Brand = sequelize.define('brand', {
   id: {
@@ -85,7 +85,7 @@ const Brand = sequelize.define('brand', {
     unique: true,
     allowNull: false,
   },
-})
+});
 
 const Rating = sequelize.define('rating', {
   id: {
@@ -97,7 +97,7 @@ const Rating = sequelize.define('rating', {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
-})
+});
 
 const DeviceInfo = sequelize.define('device_info', {
   id: {
@@ -113,7 +113,7 @@ const DeviceInfo = sequelize.define('device_info', {
     type: DataTypes.STRING,
     allowNull: false,
   },
-})
+});
 
 const TypeBrand = sequelize.define('type_brand', {
   id: {
@@ -121,37 +121,37 @@ const TypeBrand = sequelize.define('type_brand', {
     primaryKey: true,
     autoIncrement: true,
   },
-})
+});
 
-User.hasOne(Basket)
-Basket.belongsTo(User)
+User.hasOne(Basket);
+Basket.belongsTo(User);
 
-User.hasMany(Rating)
-Rating.belongsTo(User)
+User.hasMany(Rating);
+Rating.belongsTo(User);
 
-Basket.hasMany(BasketDevice)
-BasketDevice.belongsTo(Basket)
+Basket.hasMany(BasketDevice);
+BasketDevice.belongsTo(Basket);
 
-Type.hasMany(Device)
-Device.belongsTo(Type)
+Type.hasMany(Device);
+Device.belongsTo(Type);
 
-Brand.hasMany(Device)
-Device.belongsTo(Brand)
+Brand.hasMany(Device);
+Device.belongsTo(Brand);
 
-Device.hasMany(Rating)
-Rating.belongsTo(Device)
+Device.hasMany(Rating);
+Rating.belongsTo(Device);
 
 // Device.hasMany(BasketDevice)
 // BasketDevice.belongsTo(Device) его неправильный?
 
-BasketDevice.hasOne(Device)
-Device.belongsTo(BasketDevice) // мой правильный?
+BasketDevice.hasOne(Device);
+Device.belongsTo(BasketDevice); // мой правильный?
 
-Device.hasMany(DeviceInfo)
-DeviceInfo.belongsTo(Device)
+Device.hasMany(DeviceInfo, { as: 'info' });
+DeviceInfo.belongsTo(Device);
 
-Type.belongsToMany(Brand, { through: TypeBrand })
-Brand.belongsToMany(Type, { through: TypeBrand })
+Type.belongsToMany(Brand, { through: TypeBrand });
+Brand.belongsToMany(Type, { through: TypeBrand });
 
 module.exports = {
   User,
@@ -163,4 +163,4 @@ module.exports = {
   Rating,
   DeviceInfo,
   TypeBrand,
-}
+};
