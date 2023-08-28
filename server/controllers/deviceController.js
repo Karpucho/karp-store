@@ -30,18 +30,16 @@ class DeviceController {
 
       return res.json(device);
     } catch (error) {
-      next(ApiError.badRequest(error.message));
+      next(ApiError.internal(error.message));
     }
   }
 
   async getAll(req, res) {
-    let {
-      typeId, brandId, page, limit,
+    const {
+      typeId, brandId, page = 1, limit = 9,
     } = req.query;
 
     let devices;
-    page = page || 1;
-    limit = limit || 9;
     const offset = page * limit - limit;
 
     if (!typeId && !brandId) {
@@ -69,6 +67,21 @@ class DeviceController {
     });
 
     return res.json(device);
+  }
+
+  async delete(req, res, next) {
+    try {
+      const { id } = req.params;
+
+      const device = await Device.findByPk(id);
+      if (!device) return next(ApiError.badRequest('Позиция не найдена'));
+
+      await device.destroy();
+
+      return res.json({ message: 'Позиция успешно удалена' });
+    } catch (error) {
+      next(ApiError.internal(error.message));
+    }
   }
 }
 
