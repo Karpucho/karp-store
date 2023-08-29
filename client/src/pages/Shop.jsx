@@ -1,7 +1,7 @@
 import React from 'react';
 
-export const Auth: React.FC = () => (
+export const Shop = () => (
   <div>
-    work!
+    shop!
   </div>
 );
