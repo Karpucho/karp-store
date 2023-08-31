@@ -1,12 +1,17 @@
-import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import { authRoutes, publicRoutes } from '../routes';
+import { PAGE_PATHS } from '../utils/constants';
+import { Context } from '../index';
 
 export const AppRouter = () => {
-  const isAuth = false;
-
+  const { user } = useContext(Context);
+  console.log(user, '-----user- --- -');
   return (
     <Switch>
-      AppRouter!
+      {user?.isAuth && authRoutes.map(({ path, Component }) => <Route key={path} path={path} component={Component} exact />)}
+      {publicRoutes.map(({ path, Component }) => <Route key={path} path={path} component={Component} exact />)}
+      <Redirect to={PAGE_PATHS.shop} />
     </Switch>
   );
 };

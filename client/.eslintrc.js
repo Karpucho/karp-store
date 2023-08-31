@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   env: {
     browser: true,
@@ -15,8 +17,15 @@ module.exports = {
 
   settings: {
     'import/resolver': {
-      node: {extensions: ['.js', '.jsx', '.ts', '.tsx']},
-      'typescript': {}
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
+      alias: {
+        map: [
+          ['@', path.resolve(__dirname, 'src')],
+        ],
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
     },
   },
   parser: '@typescript-eslint/parser',
@@ -37,10 +46,11 @@ module.exports = {
     'linebreak-style': ['error', 'unix'],
     quotes: ['error', 'single'],
     semi: ['error', 'always'],
-    'import/no-unresolved': 0, // because ts already throw error if we can`t resolve path
+    'import/no-unresolved': "error",
     'import/prefer-default-export': 0,
     'react/function-component-definition': 0,
     'import/extensions': 0,
+    'import/no-cycle': 0, // мое новое
     'react/jsx-filename-extension': ['error', { extensions: ['.ts', '.tsx', '.js', '.jsx'] }],
     "react/require-default-props": 0,
     "react/jsx-props-no-spreading": 0,
