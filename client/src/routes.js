@@ -9,10 +9,12 @@ export const authRoutes = [
   {
     path: PAGE_PATHS.admin,
     Component: AdminPanel,
+    title: 'Панель администратора',
   },
   {
     path: PAGE_PATHS.basket,
     Component: Basket,
+    title: 'Корзина',
   },
 ];
 
@@ -24,13 +26,16 @@ export const publicRoutes = [
   {
     path: PAGE_PATHS.login,
     Component: Auth,
+    title: 'Логин',
   },
   {
     path: PAGE_PATHS.registration,
     Component: Auth,
+    title: 'Регистрация',
   },
   {
     path: `${PAGE_PATHS.device}/:id`,
     Component: DevicePage,
+    title: 'Девайс',
   },
 ];

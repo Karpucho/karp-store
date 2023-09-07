@@ -14,16 +14,9 @@ module.exports = {
     'plugin:react/jsx-runtime',
   ],
   root: true,
-
   settings: {
     'import/resolver': {
       node: {
-        extensions: ['.js', '.jsx', '.ts', '.tsx'],
-      },
-      alias: {
-        map: [
-          ['@', path.resolve(__dirname, 'src')],
-        ],
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
       },
     },
@@ -46,7 +39,7 @@ module.exports = {
     'linebreak-style': ['error', 'unix'],
     quotes: ['error', 'single'],
     semi: ['error', 'always'],
-    'import/no-unresolved': "error",
+    'import/no-unresolved': [2, { ignore: ['^@/'] }],
     'import/prefer-default-export': 0,
     'react/function-component-definition': 0,
     'import/extensions': 0,
