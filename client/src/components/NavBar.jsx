@@ -49,7 +49,18 @@ export const NavBar = observer(() => {
 
   return (
     <Layout className="layout">
-      <Header style={{ display: 'flex', justifyContent: 'space-between' }}>
+      <Header
+        style={{
+          position: 'sticky',
+          top: 0,
+          zIndex: 1,
+          width: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+        }}
+      // style={{ display: 'flex', justifyContent: 'space-between' }}
+      >
         <div className="logo" style={{ color: 'white' }}>Logo</div>
         { user.isAuth ? (
           <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
