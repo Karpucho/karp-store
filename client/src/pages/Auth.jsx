@@ -95,6 +95,5 @@ export const Auth = () => {
         )}
       />
     </Card>
-
   );
 };

@@ -6,7 +6,9 @@ import {
   SettingOutlined,
 } from '@ant-design/icons';
 import { observer } from 'mobx-react-lite';
+import { useHistory } from 'react-router-dom';
 import { Context } from '../index';
+import { PAGE_PATHS } from '../utils/constants';
 
 const { Header } = Layout;
 
@@ -38,6 +40,8 @@ const items1 = [
 ];
 
 export const NavBar = observer(() => {
+  const { push } = useHistory();
+
   const [current, setCurrent] = useState('alipay');
 
   const { user } = useContext(Context);
@@ -64,9 +68,27 @@ export const NavBar = observer(() => {
         <div className="logo" style={{ color: 'white' }}>Logo</div>
         { user.isAuth ? (
           <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
-            <Menu.Item key="1" icon={<HomeOutlined />}>Home</Menu.Item>
-            <Menu.Item key="2" icon={<UserOutlined />}>Profile</Menu.Item>
-            <Menu.Item onClick={() => user.setIsAuth(false)} key="3" icon={<SettingOutlined />}>Выйти</Menu.Item>
+            <Menu.Item
+              key="1"
+              icon={<HomeOutlined />}
+              onClick={() => push(PAGE_PATHS.admin)}
+            >
+              Панель администратора
+            </Menu.Item>
+            {/* <Menu.Item
+              key="2"
+              icon={<UserOutlined />}
+            >
+              Profile
+            </Menu.Item> */}
+            <Menu.Item
+              // onClick={() => user.setIsAuth(false)}
+              onClick={() => push(PAGE_PATHS.login)}
+              key="3"
+              icon={<SettingOutlined />}
+            >
+              Выйти
+            </Menu.Item>
           </Menu>
         )
           : (

@@ -1,9 +1,9 @@
-import { AdminPanel } from './pages/AdminPanel';
-import { Auth } from './pages/Auth';
-import { Basket } from './pages/Basket';
-import { DevicePage } from './pages/DevicePage';
-import { Shop } from './pages/Shop';
-import { PAGE_PATHS } from './utils/constants';
+import { AdminPanel } from '../pages/AdminPanel';
+import { Auth } from '../pages/Auth';
+import { Basket } from '../pages/Basket';
+import { DevicePage } from '../pages/DevicePage';
+import { Shop } from '../pages/Shop';
+import { PAGE_PATHS } from './constants';
 
 export const authRoutes = [
   {

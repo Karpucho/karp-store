@@ -30,11 +30,9 @@ export const DeviceList = observer(() => {
   }));
 
   return (
-    <Row gutter={[16, 24]}>
+    <Row gutter={[16, 16]}>
       { device.devices.map((deviceItem) => (
-        <Col key={deviceItem.id} span={6}>
-          <DeviceItem key={deviceItem.id} device={deviceItem} />
-        </Col>
+        <DeviceItem key={deviceItem.id} device={deviceItem} />
       ))}
     </Row>
   );
