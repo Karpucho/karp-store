@@ -1,4 +1,4 @@
-import { AdminPanel } from '../pages/AdminPanel';
+import { AdminPanel } from '../pages/AdminPanel/AdminPanel';
 import { Auth } from '../pages/Auth';
 import { Basket } from '../pages/Basket';
 import { DevicePage } from '../pages/DevicePage';
